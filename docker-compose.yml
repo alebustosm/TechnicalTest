@@ -1,0 +1,61 @@
+version: '3.1'
+services:
+  # Postgres DB
+# Postgres DB
+  db:
+    image: postgres
+    env_file: .env
+    container_name: ${PROJ_NAME}_db
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - web-db:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    container_name: ${PROJ_NAME}_backend
+    command: bash -c "sleep 5 && sh /usr/src/app/init.sh"
+    env_file: .env
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8000:8000"
+    links:
+      - db
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:1.15-alpine
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    env_file: .env
+    ports:
+      - "443:443"
+      - "80:80"
+    links:
+      - backend
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: unless-stopped
+    volumes:
+      - ./logs/nginx:/tmp/logs
+      - ./data/nginx:/etc/nginx/conf.d
+      - ./static:/opt/app/static
+      - ./media:/opt/app/media
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    depends_on:
+      - backend
+
+
+volumes:
+  web-db:
