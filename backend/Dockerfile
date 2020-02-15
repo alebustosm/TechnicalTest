@@ -1,5 +1,5 @@
 FROM python:3.6.0
-MAINTAINER Made2
+MAINTAINER AleBustos
 ENV PYTHONUNBUFFERED 1
 
 RUN echo "deb http://deb.debian.org/debian jessie main" > /etc/apt/sources.list

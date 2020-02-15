@@ -1,0 +1,1 @@
+[{"model": "oauth2_provider.application", "pk": 1, "fields": {"client_id": "local", "user": 1, "redirect_uris": "", "client_type": "confidential", "authorization_grant_type": "password", "client_secret": "local", "name": "Local", "skip_authorization": false, "created": "2020-02-14T23:56:19.493Z", "updated": "2020-02-14T23:56:19.493Z"}}]

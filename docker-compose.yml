@@ -22,7 +22,7 @@ services:
       restart_policy:
         condition: on-failure
     container_name: ${PROJ_NAME}_backend
-    command: bash -c "sleep 5 && sh /usr/src/app/init.sh"
+    command: bash -c "sleep 5 && sh /usr/src/app/backend/init.sh"
     env_file: .env
     volumes:
       - .:/usr/src/app

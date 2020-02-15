@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+cd backend || exit 1
 echo "[run] install requirements.txt"
 pip install -r requirements.txt || exit 1
 echo "[run] make migrations"
@@ -24,6 +25,10 @@ if site:
     site.domain = 'http://0.0.0.0:8000'
     site.save()
 " | python3 manage.py shell || exit 1
+
+echo "[run] Load Initial data"
+
+python3 manage.py loaddata /usr/src/app/backend/fixtures/initial_oauth.json || exit 1
 
 echo "[run] runserver with django"
 python3 manage.py runserver 0.0.0.0:8000
