@@ -37,10 +37,6 @@ class Person(BaseModel):
     last_name = models.CharField(max_length=30, blank=True)
     full_name = models.CharField(max_length=61, null=True,blank=True, editable=False)
     email = models.EmailField(blank=False, null=True)
-
-    birthday = models.DateField(blank=True,null=True)
-    address = models.CharField(max_length=100, blank=True)
-    phone = models.CharField(max_length=100, blank=True)
     
 
     class Meta:

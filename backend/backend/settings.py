@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     'backend',
     'apps.core',
     'apps.user',
+    'apps.borrower',
+    'apps.lender',
 
 
 ]

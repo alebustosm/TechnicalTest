@@ -19,8 +19,6 @@ class User(AbstractUser):
     email = models.EmailField(_('email address'), null=False,unique=True)
 
     
-
-
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'
         ordering = ['-id']
