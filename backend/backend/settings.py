@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.user',
     'apps.borrower',
-    'apps.lender',
+    'apps.loan',
 
 
 ]
