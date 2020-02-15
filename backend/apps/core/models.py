@@ -33,9 +33,7 @@ class BaseModel(models.Model):
 
 
 class Person(BaseModel):
-    first_name = models.CharField(max_length=30, blank=True)
-    last_name = models.CharField(max_length=30, blank=True)
-    full_name = models.CharField(max_length=61, null=True,blank=True, editable=False)
+    full_name = models.CharField(max_length=61, null=True,blank=True)
     email = models.EmailField(blank=False, null=True)
     gender = models.CharField(max_length=1,
                            blank=True,
@@ -48,8 +46,6 @@ class Person(BaseModel):
         ordering = ['-created_at']
 
     def save(self, *args, **kwargs):
-        self.full_name = normalize_text("%s %s" % (self.first_name if self.first_name else "",
-                                                   self.last_name if self.last_name else ""))
         if not getattr(self, 'email') and getattr(self, 'user'):
             self.email = self.user.email
         super(Person, self).save(*args, **kwargs)

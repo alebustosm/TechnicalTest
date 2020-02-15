@@ -5,11 +5,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import routers
 from apps.user.api.api_rest import UserModelViewSet
-from apps.loan.api.api_rest import LoanRequestViewSet
+from apps.loan.api.api_rest import LoanRequestViewSet, DateasApiView
 
 router = routers.DefaultRouter()
 router.register(r'users', UserModelViewSet)
 router.register(r'loansrequest', LoanRequestViewSet)
+router.register(r'dateas', DateasApiView,basename='dateas')
+
 
 
 

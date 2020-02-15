@@ -6,4 +6,4 @@ class BorrowerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Borrower
-        fields = ("id","first_name","last_name","email","document_number","gender")
+        fields = ("id","full_name","email","document_number","gender")

@@ -12,6 +12,7 @@ import PrivateRoute from './PrivateRoute';
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
 import Home from "./pages/Home";
+import LoanRequest from "./pages/LoanRequest";
 
 
 
@@ -28,9 +29,6 @@ function App() {
              {!auth.access_token && <li className="nav-item">
                 <Link className="nav-link" to={"/sign-in"}>Login</Link>
               </li>}
-              <li className="nav-item">
-                <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
-              </li>
             </ul>
           </div>
         </div>
@@ -39,6 +37,7 @@ function App() {
       <div className="auth-wrapper">
         <div className="auth-inner">
           <Switch>
+            <Route path="/loan" component={LoanRequest} />
             <PrivateRoute exact path='/' component={Home} />
             <Route path="/sign-in" component={Login} />
             <Route path="/sign-up" component={SignUp} />

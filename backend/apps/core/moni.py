@@ -55,7 +55,7 @@ def handler_req_except():
 
 class MoniAPI(object):
     """
-        LoyalBee system Connection class 
+        Moni system Connection class 
     """
 
     def __init__(self, *args, **kwargs):
@@ -64,7 +64,7 @@ class MoniAPI(object):
 
     def get_default_header(self):
         """
-        Return default header for consumer OpenLoyalt api
+        Return default header for consumer
         """
         return {
             'Accept': "application/json",
