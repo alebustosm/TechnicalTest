@@ -26,6 +26,15 @@ services:
       - db
     depends_on:
       - db
+
+  frontend:
+    build: ./front
+    container_name: ${PROJ_NAME}_frontend
+    command: bash -c "npm run --prefix ./front start"
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "3000:3000"
       
 volumes:
   web-db:
