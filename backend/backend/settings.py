@@ -246,10 +246,23 @@ LOGGING = {
             'backupCount': 5,
             'formatter':'standard',
         },
+        'moniapi': {
+            'level':'DEBUG',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': BASE_DIR + '/logs/moniapi.log',
+            'maxBytes': 1024*1024*10, # 10 MB
+            'backupCount': 5,
+            'formatter':'standard',
+        },
     
     },
     'loggers': {
         '': {
+            'handlers': ['default'],
+            'level': 'DEBUG',
+            'propagate': True
+        },
+         'moniapi': {
             'handlers': ['default'],
             'level': 'DEBUG',
             'propagate': True
