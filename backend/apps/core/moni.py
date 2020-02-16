@@ -15,6 +15,8 @@ BASE_API_ENDPOINT = BASE_DOMAIN + "api/v1/"
 
 
 
+
+
 class MoniConsumerAPIException(Exception):
     def __init__(self, *args, **kwargs):
         self.message = kwargs.get('message', "")

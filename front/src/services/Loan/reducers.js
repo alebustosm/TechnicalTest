@@ -1,26 +1,23 @@
-const initialLoan = {
-    borrower: null,
-    borrower_data: {
-        first_name: null,
-        last_name: null,
-        email: null,
-        document_number: null,
-        gender: null
-    },
-    amount: null,
-    status: null
-}
+const initialState = {
+    count: 0,
+    results: []
+};
 
-
-export default function loan(state=initialLoan, action) {
+export function loanList(state=initialState, action) {
     let data = state;
 
     switch (action.type) {
 
-        case 'ADD_LOAN_REQUEST':
+        case 'FETCH_LOAN_REQUEST':
+            return action.resp;
+        
+        case 'DELETE_LOAN_REQUEST':
+            let new_data = data.results.filter(item => {
+                return item.id !== action.resp.id});
             
-            return action.loan;
-
+            return {count: data.count - 1, results:new_data};
+        
+      
 
         default:
             return state;
