@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loan } from "../../services/Loan";
 import { dateas } from "../../services/Dateas";
-
-
 import { Form, Select, Input, Button, InputNumber, notification} from 'antd';
 const { Option } = Select;
 const { Search } = Input;
@@ -42,7 +40,7 @@ class LoanApplicationForm extends Component {
 		e.preventDefault();
 		this.props.form.validateFields( async (err, values) => {
 			if (!err) {
-				const { loanRequest, auth, redirectHome, hideForm } = this.props;
+				const { loanRequest, auth, redirectHome, hideForm,setshowMessage } = this.props;
 				if (loanRequest) {
 
 
@@ -64,9 +62,11 @@ class LoanApplicationForm extends Component {
 					}
 					else if(data['status']==="denied"){
 						openNotification("La solicitud ah sido rechazada")
+						setshowMessage(`Lo sentimos pero ${data['full_name']} no esta apto para solicitar un prestamo `)
 					}
 					else if(data['status']==="approved"){
 						openNotificationSuccess("Solicitud ah sido aprobada")
+						setshowMessage("Felicidades su solicitud de prestamo ah sido aprobada")
 						hideForm()
 					}
 					
@@ -112,7 +112,7 @@ class LoanApplicationForm extends Component {
 	render() {
 		const { getFieldDecorator } = this.props.form;
 		const { enable_form, error } = this.state;
-		const { loanRequest, auth, redirectHome,loan } = this.props;
+		const { loanRequest, auth, redirectHome } = this.props;
 
 		return (
 			<Form labelCol={{ span: 10 }} wrapperCol={{ span: 12 }} onSubmit={this.handleSubmit}>
@@ -195,7 +195,6 @@ const LoanApplication = Form.create({ name: 'normal_login' })(LoanApplicationFor
 const mapStateToProps = state => {
 	return {
 		auth: state.user_auth,
-		loan: state.loan,
 	};
 };
 

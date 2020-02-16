@@ -85,7 +85,7 @@ function LoanList() {
               },
          },
          {
-          title: 'Amount',
+          title: 'Monto',
           dataIndex: 'amount',
           key: 'amount',
           render: text =>{
@@ -119,7 +119,7 @@ function LoanList() {
             dataSource={loanList.results}
             pagination={{
                 // onChange: (page) => {this.onChangePage(page)},
-                pageSize: 7,
+                pageSize: 5,
                 // current:this.props.page ? parseInt(this.props.page,10) : 1,
                 total: loanList.count ? loanList.count : 0,
                 size:'medium'
