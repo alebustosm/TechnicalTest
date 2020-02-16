@@ -18,4 +18,4 @@ RUN pip install -r /usr/src/app/requirements.txt --no-cache-dir
 RUN chmod 777 /usr/src/app/init_local.sh
 RUN chmod +x /usr/src/app/init_local.sh
 
-CMD ['/usr/src/app/init.sh']
+CMD ['/usr/src/app/init_local.sh']
