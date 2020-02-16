@@ -46,8 +46,6 @@ class Person(BaseModel):
         ordering = ['-created_at']
 
     def save(self, *args, **kwargs):
-        if not getattr(self, 'email') and getattr(self, 'user'):
-            self.email = self.user.email
         super(Person, self).save(*args, **kwargs)
 
 

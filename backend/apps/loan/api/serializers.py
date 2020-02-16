@@ -5,6 +5,14 @@ from apps.borrower.api.serializers import BorrowerSerializer
 
 class LoanRequestSerializer(serializers.ModelSerializer):
     borrower_data = BorrowerSerializer(source="borrower",read_only=True)
+    status = serializers.SerializerMethodField()
+
+    def get_status(self,obj):
+        try:
+            return obj.get_status_display()
+        except Exception as e:
+            return None
+
 
     class Meta:
         model = LoanRequest

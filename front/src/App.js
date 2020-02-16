@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
-import {connect, useSelector} from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 
 import './App.css';
@@ -17,43 +17,46 @@ import LoanRequest from "./pages/LoanRequest";
 
 
 function App() {
-  const auth = useSelector(state => state.user_auth)
+	const auth = useSelector(state => state.user_auth)
 
-  return (<Router>
-    <div className="App">
-      <nav className="navbar navbar-expand-lg navbar-light fixed-top">
-        <div className="container">
-          <Link className="navbar-brand" to={"/"}>Moni</Link>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul className="navbar-nav ml-auto">
-             {!auth.access_token && <li className="nav-item">
-                <Link className="nav-link" to={"/sign-in"}>Login</Link>
-              </li>}
-            </ul>
-          </div>
-        </div>
-      </nav>
+	return (<Router>
+		<div className="App">
+			<nav className="navbar navbar-expand-lg navbar-light fixed-top">
+				<div className="container">
+					<Link className="navbar-brand" to={""}>Moni</Link>
+					<div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+						{!auth.access_token ? <Link to={"/loan"}>Solicitud de Prestamos</Link> : <Link to={"/loan-list"}>Listado Solicitudes de Prestamos</Link>}
+						<ul className="navbar-nav ml-auto">
+							{!auth.access_token ? <li className="nav-item">
+								<Link className="nav-link" to={"/sign-in"}>Login</Link>
+							</li> : <Link className="nav-link" to={"/sign-out"}>Logout</Link>}
 
-      <div className="auth-wrapper">
-        <div className="auth-inner">
-          <Switch>
-            <Route path="/loan" component={LoanRequest} />
-            <PrivateRoute exact path='/' component={Home} />
-            <Route path="/sign-in" component={Login} />
-            <Route path="/sign-up" component={SignUp} />
-          </Switch>
-        </div>
-      </div>
-    </div></Router>
-  );
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<div className="auth-wrapper">
+				<div className="auth-inner">
+					<Switch>
+						<Route exact path="/sign-in" component={Login} />
+						<Route path="/sign-up" component={SignUp} />
+						<PrivateRoute exact path='/loan-list' component={Home} />
+						<Route exact path="/loan" component={LoanRequest} />
+						<Route exact path="/" component={LoanRequest} />
+					</Switch>
+				</div>
+			</div>
+		</div></Router>
+	);
 }
 
 
 
 const mapStateToProps = state => {
-  return {
-      auth: state.user_auth
-  }
+	return {
+		auth: state.user_auth
+	}
 };
 
 export default connect(mapStateToProps)(App);

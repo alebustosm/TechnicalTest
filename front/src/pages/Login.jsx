@@ -22,9 +22,8 @@ class LoginForm extends Component {
         const { getFieldDecorator } = this.props.form;
         const {auth} = this.props
         auth.access_token &&
-                this.props.history.push("/");
-
-
+                this.props.history.push("/loan-list");
+    
 
         return (
             <Form onSubmit={this.handleSubmit} >
