@@ -42,7 +42,6 @@ function App() {
 				<div className="auth-inner">
 					<Switch>
 						<Route exact path="/sign-in" component={Login} />
-						<Route path="/sign-up" component={SignUp} />
 						<PrivateRoute exact path='/loan-list' component={Home} />
 						<Route exact path="/loan" component={LoanRequest} />
 						<Route exact path="/" component={LoanRequest} />
