@@ -35,4 +35,10 @@ http://0.0.0.0:3000
 http://0.0.0.0:8000/admin/
 ```
 
+3 - Credenciales para utilizar la aplicacion
+```
+username: admin@moni.com 
+password: qwerty123
+```
+
 
