@@ -14,6 +14,10 @@ export default function user_auth(state=initialState, action) {
 
         case 'SET_TOKEN':
             return action.resp;
+
+        case 'CLEAN_TOKEN':
+            console.log(action.resp)
+            return action.resp;
         
         default:
             return state;

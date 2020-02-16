@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
-import { connect, useSelector } from "react-redux";
+import { connect, useSelector, useDispatch} from "react-redux";
 
 
 import './App.css';
@@ -13,11 +13,13 @@ import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
 import Home from "./pages/Home";
 import LoanRequest from "./pages/LoanRequest";
-
+import { auth as user } from "./services/Auth";
+ 
 
 
 function App() {
 	const auth = useSelector(state => state.user_auth)
+	const dispatch = useDispatch()
 
 	return (<Router>
 		<div className="App">
@@ -29,7 +31,7 @@ function App() {
 						<ul className="navbar-nav ml-auto">
 							{!auth.access_token ? <li className="nav-item">
 								<Link className="nav-link" to={"/sign-in"}>Login</Link>
-							</li> : <Link className="nav-link" to={"/sign-out"}>Logout</Link>}
+							</li> : <Link className="nav-link" onClick={()=> dispatch(user.logout(auth.access_token))}>Logout</Link>}
 
 						</ul>
 					</div>
@@ -58,5 +60,7 @@ const mapStateToProps = state => {
 		auth: state.user_auth
 	}
 };
+
+
 
 export default connect(mapStateToProps)(App);

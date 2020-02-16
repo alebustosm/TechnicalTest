@@ -2,20 +2,9 @@ import React, { useState, useEffect } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { loan } from "../../services/Loan";
-import { Table, Divider ,notification,Modal} from 'antd';
+import { Table, Divider ,Modal} from 'antd';
 
 const confirm = Modal.confirm;
-
-
-const openNotification = placement => {
-	notification.error({
-		message: `Error!`,
-		description:placement,
-		placement:'bottomRight',
-
-	});
-};
-
 
 
 

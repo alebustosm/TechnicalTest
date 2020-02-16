@@ -7,14 +7,25 @@ export const login = (auth) => {
     params.append('client_secret', 'local');
 
     return dispatch => {
-        return fetch(`http://127.0.0.1:8000/o/token/`, {method: "POST", headers:{"Content-Type": "application/x-www-form-urlencoded"},body:params })
+        return fetch(`http://127.0.0.1:8000/o/token/`, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: params })
             .then(res => res.json())
             .then(resp => {
                 return dispatch({
                     type: 'SET_TOKEN',
-                    resp:resp
+                    resp: resp
                 })
             })
+    }
+};
+
+export const logout = () => {
+
+    return dispatch => {
+
+        return dispatch({
+            type: 'CLEAN_TOKEN',
+            resp: { access_token: null }
+        })
     }
 };
 
